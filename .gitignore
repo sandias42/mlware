@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# text editor tmp files
+*~
+
+# The test data file is too large
+test.tar.gz
