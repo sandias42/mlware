@@ -95,6 +95,8 @@ ENV/
 test.tar.gz
 /data/train
 
+data/train/*
+
 # So is the uncompressed feature
 naive_word_hashed_full_features.mtx
 
