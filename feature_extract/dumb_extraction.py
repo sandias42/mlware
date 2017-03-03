@@ -2,44 +2,59 @@
 import numpy as np
 from sklearn.feature_extraction.text import HashingVectorizer
 import os
-import unittest
 from scipy import io
+from optparse import OptionParser
 
 train_paths = os.listdir("../data/train/")
-test_paths = os.listdir("../data/train/")
+test_paths = os.listdir("../data/test/")
 
 train_ids = []
 train_class = []
 test_ids = []
 
+"""# parse command line argument
+op = OptionParser()
+op.add_option("--vectorizer",
+              action="store_true",
+              help="Use sklearn's HashingVectorizer to extract features")
+op.add_option("--str_process",default="""
+
 
 def generate_xml_paths(train_paths, test_paths, xml_processor=lambda x: x, i=0):
     """ 
-    Processes the provided paths, extracting id and class information and applying
-    whatever function on the xml is desired.
+    Processes the provided paths, extracting id and class information and 
+    applying whatever function on the xml is desired.
     """
     paths = train_paths + test_paths
-    while i <= len(paths):
-
+    print "The length of the test data is {0}, training data {1}".format(
+        len(test_paths), len(train_paths)
+    )
+    while i < len(paths):
+        abs_path = ''
         # Split the file name into a list of [id, class_name, xml]
         id_class_xml = paths[i].split('.')
-        unittest.assertEqual(id_class_xml[2], 'xml')
+        assert id_class_xml[2] == 'xml'
 
         # If the file is part of the test set, append the id to test_ids
-        if i > len(train_paths):
+        if i >= len(train_paths):
             test_ids.append(id_class_xml[0])
-            unittest.assertEqual(id_class_xml[1], 'X')
+            assert id_class_xml[1] == 'X'
+            abs_path = os.path.join(
+                os.path.abspath("../data/test/"), paths[i])
 
         # Otherwise file is in training set. Append id and class
         else:
             train_ids.append(id_class_xml[0])
             train_class.append(id_class_xml[1])
+            abs_path = os.path.join(
+                os.path.abspath("../data/train/"), paths[i])
 
         # Open the file, process, and yield string
-        with open(paths[i], 'r') as xml_file:
+        with open(abs_path, 'r') as xml_file:
             xml_content = xml_processor(xml_file.read())
-            unittest.asserIsInstance(xml_content, str)
+            assert type(xml_content) == str
             yield xml_content
+            print "sent file {0}, named \n {1} to processing".format(i, paths[i])
             i += 1
 
 
@@ -63,6 +78,6 @@ print type(hashed_sparse_mat)
 io.mmwrite("../data/features/naive_word_hashed_full_features.mtx",
            hashed_sparse_mat)
 
-np.array(test_ids).save("../data/features/test_ids.np")
-np.array(train_ids).save("../data/features/train_ids.np")
-np.array(train_class).save("../data/features/train_classes.np")
+np.save("../data/features/test_ids.npy", np.array(test_ids))
+np.save("../data/features/train_ids.npy", np.array(train_ids))
+np.save("../data/features/train_classes.npy", np.array(train_class))

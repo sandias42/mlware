@@ -93,3 +93,6 @@ ENV/
 
 # The test data file is too large
 test.tar.gz
+
+# So is the uncompressed feature
+naive_word_hashed_full_features.mtx
