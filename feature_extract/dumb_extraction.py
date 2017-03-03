@@ -39,6 +39,7 @@ def generate_xml_paths(train_paths, test_paths, xml_processor=lambda x: x, i=0):
     """ 
     Processes the provided paths, extracting id and class information and 
     applying whatever function on the xml is desired.
+    xml_processor should takes in xml_string and should return something
     """
     paths = train_paths + test_paths
     print "The length of the test data is {0}, training data {1}".format(
