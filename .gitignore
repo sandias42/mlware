@@ -93,9 +93,13 @@ ENV/
 
 # The test data file is too large
 test.tar.gz
+/data/train
 
 data/train/*
 data/test/*
 
 # So is the uncompressed feature
 naive_word_hashed_full_features.mtx
+
+# PyCharm stuff
+/.idea
