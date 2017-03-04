@@ -1,3 +1,4 @@
+
 """ This file implements completely naive featurization of the xml files."""
 import numpy as np
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -92,6 +93,22 @@ if op.vectorizer == "hashing":
     print type(hashed_sparse_mat)
     # Save the matrix as follows
     io.mmwrite("../data/features/naive_word_hashed_full_features.mtx",
+               hashed_sparse_mat)
+
+elif op.vectorizer == "hash_4gram_tfidf":
+    # pipe vectorizer with ngrams and tfidf
+    pipe = make_pipeline(
+        HashingVectorizer(ngram_range=(1, 4)),
+        TfidfTransformer()
+    )
+    hashed_sparse_mat = pipe.transform(
+        generate_xml_paths(train_paths, test_paths)
+    )
+
+    print hashed_sparse_mat
+    print type(hashed_sparse_mat)
+    # Save the matrix as follows
+    io.mmwrite("../data/features/tfifd_4gram_hashed_full_features.mtx",
                hashed_sparse_mat)
 
 elif op.vectorizer == "counts10000":
