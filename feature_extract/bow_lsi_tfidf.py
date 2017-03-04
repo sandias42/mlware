@@ -40,17 +40,19 @@ class MySentences(object):
 sentences = MySentences()
 
 dictionary = corpora.Dictionary(sentences)
-once_ids = [tokenid for tokenid, docfreq in iteritems(dictionary.dfs) if docfreq == 1]
+once_ids = [tokenid for tokenid, docfreq in iteritems(dictionary.dfs) if docfreq < 4]
 dictionary.filter_tokens(once_ids)  # remove words that appear only once
 dictionary.compactify()
 
 corpus = [dictionary.doc2bow(s, allow_update=False) for s in sentences]
-np.save('../data/bow.npy', gensim.matutils.corpus2csc(corpus).todense().T)
+#np.save('../data/bow.npy', gensim.matutils.corpus2csc(corpus).todense().T)
 
 tfidf = gensim.models.TfidfModel(corpus)
 corpus_tfidf = tfidf[corpus]
-np.save('../data/tfidf.npy', gensim.matutils.corpus2csc(corpus_tfidf.corpus).todense().T)
+#np.save('../data/tfidf.npy', gensim.matutils.corpus2csc(corpus_tfidf).todense().T)
 
-lsi = gensim.models.LsiModel(corpus_tfidf, num_topics=300)
+lsi = gensim.models.LsiModel(corpus_tfidf, num_topics=500)
 corpus_lsi = lsi[corpus_tfidf]
-np.save('../data/lsi.npy', gensim.matutils.corpus2csc(corpus_lsi.corpus).todense().T)
+
+np.save('../data/lsi_500.npy', gensim.matutils.corpus2csc(corpus_lsi).todense().T)
+#print(np.load('lsi.npy').shape)

@@ -93,8 +93,7 @@ ENV/
 
 # The test data file is too large
 test.tar.gz
-/data/train
-
+/data/*
 data/train/*
 data/test/*
 
