@@ -104,3 +104,6 @@ naive_word_hashed_full_features.mtx
 
 # Big model files
 *.hdf5
+
+# Ignore numpy files
+*.npy
