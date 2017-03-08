@@ -102,7 +102,7 @@ elif op.vectorizer == "hash_4gram_tfidf":
         HashingVectorizer(ngram_range=(1, 4)),
         TfidfTransformer()
     )
-    hashed_sparse_mat = pipe.transform(
+    hashed_sparse_mat = pipe.fit_transform(
         generate_xml_paths(train_paths, test_paths)
     )
 
@@ -130,6 +130,8 @@ elif op.vectorizer == "counts_tfidf10000":
             np.array(normalized_corpus)
             )
 
+elif op.vectorizer == "none":
+    [0 for __ in generate_xml_paths(train_paths, test_paths)]
 
 if op.extract_id:
     np.save("../data/features/test_ids.npy", np.array(test_ids))
