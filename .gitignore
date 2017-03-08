@@ -101,3 +101,6 @@ naive_word_hashed_full_features.mtx
 
 # PyCharm stuff
 /.idea
+
+# Big model files
+*.hdf5
