@@ -93,7 +93,7 @@ ENV/
 
 # The test data file is too large
 test.tar.gz
-/data/
+/data/*
 
 # Ignore the data 
 # So is the uncompressed feature
