@@ -93,7 +93,7 @@ ENV/
 
 # The test data file is too large
 test.tar.gz
-/data/
+/data/*
 
 # Ignore the data 
 # So is the uncompressed feature
@@ -101,3 +101,9 @@ naive_word_hashed_full_features.mtx
 
 # PyCharm stuff
 /.idea
+
+# Big model files
+*.hdf5
+
+# Ignore numpy files
+*.npy
