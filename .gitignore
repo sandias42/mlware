@@ -107,3 +107,8 @@ naive_word_hashed_full_features.mtx
 
 # Ignore numpy files
 *.npy
+
+# Ignore supporting latex files
+*.aux
+*.log
+*.synctex.gz
