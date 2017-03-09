@@ -13,10 +13,27 @@
 We explored the problem of malware classification from several different angles:
 
 \begin{itemize}
-	\item Running through a variety of models quickly to test which show the most immediate promise
 	\item Feature engineering
+	\item Running through a variety of models quickly to test which show the most immediate promise
 	\item More focused tuning of hyperparameters for neural nets
 \end{itemize}
+
+\noindent Feature engineering process (Grigory and Ethan)
+\linebreak
+
+\noindent With several different feature sets to test on, we tested out classification with a random forest, a support vector machine, a standard neural net (sklearn's MLPClassifier), and an LSTM net.
+\linebreak
+
+\noindent Tuning standard neural net parameters was an accessory step, more with the intention of learning about overfitting rather than improving performance. The parameters tuned were:
+	
+	\begin{itemize}
+		\item Number of hidden layers (1 or 2)
+		\item Size of hidden layers (between 800 and 50)
+		\item Activation function (tanh, relu, or logistic)
+		\item Maximum number of optimization iterations
+	\end{itemize}
+
+\pagebreak
 
 How did you tackle the problem? Credit will be given for:
 
@@ -34,34 +51,34 @@ How did you tackle the problem? Credit will be given for:
   If you used existing packages or referred to papers or blogs for ideas,
   you should cite these in your report. 
 
-  \begin{table}
-    \centering
-    \begin{tabular}{@{}lll@{}}
-      \toprule
-      &\multicolumn{2}{c}{Mention Features  } \\
-      & Feature & Value Set\\
-      \midrule
-      & Mention Head & $\mcV$ \\
-      & Mention First Word & $\mcV$ \\
-      & Mention Last Word & $\mcV$ \\
-      & Word Preceding Mention & $\mcV$ \\
-      & Word Following Mention & $\mcV$\\
-      & \# Words in Mention & $\{1, 2, \ldots \}$ \\
-      & Mention Type & $\mathcal{T}$ \\
-      \bottomrule
-      
-    \end{tabular}
-    \caption{Feature lists are a good way of illustrating problem specific tuning.}
-  \end{table}
-
 
 
 \section{Results}
+We had a wide variety of performance across the methods and feature sets we tested. For the models that we submitted to Kaggle, our best result was approximately $.79$ accuracy on the private tests, produced by a random forest classifier.
+ \\
+\begin{table}
+\centering
+\begin{tabular}{llr}
+	\toprule
+	Model &  & Acc. \\
+	\midrule
+	\textsc{Baseline 1} & & 0.45\\
+	\textsc{Baseline 2} & & 2.59 \\
+	\textsc{Model 1} & & 10.59  \\
+	\textsc{SVM on topic modeled FV} & &13.42 \\
+	\textsc{Passive Aggressive on GBOW} & & .150\\
+	\bottomrule
+\end{tabular}
+\caption{Feature lists are a good way of illustrating problem specific tuning.}
+\end{table}
+
+
+\pagebreak
+
 This section should report on the following questions: 
 
 \begin{itemize}
-\item Did you create and submit a set of
-  predictions? 
+\item Did you create and submit a set of predictions? 
   
 
 \item  Did your methods give reasonable performance?  
