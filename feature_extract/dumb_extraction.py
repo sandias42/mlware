@@ -54,7 +54,6 @@ def generate_xml_paths(train_paths, test_paths, xml_processor=lambda x: x, i=0):
 
         # If the file is part of the test set, append the id to test_ids
         if i >= len(train_paths):
-            print 'heres a thing'
             if op.extract_id:
                 test_ids.append(id_class_xml[0])
             assert id_class_xml[1] == 'X'
