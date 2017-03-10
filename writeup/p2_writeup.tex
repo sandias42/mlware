@@ -35,23 +35,6 @@ We explored the problem of malware classification from several different angles:
 
 \pagebreak
 
-How did you tackle the problem? Credit will be given for:
-
-  \begin{itemize}
-  \item Diving deeply into a method (rather than just trying
-    off-the-shelf tools with default settings). This can mean 
-    providing mathematical descriptions or pseudo-code.
-  \item Making tuning and configuration decisions using thoughtful experimentation.  
-    This can mean carefully describing features added or hyperparameters tuned.
-  \item Exploring several methods. This can contrasting two approaches
-    or perhaps going beyond those we discussed in class.
-  \end{itemize}
-
-  \noindent Thoughtfully iterating on approaches is key.
-  If you used existing packages or referred to papers or blogs for ideas,
-  you should cite these in your report. 
-
-
 
 \section{Results}
 We had a wide variety of performance across the methods and feature sets we tested. For the models that we submitted to Kaggle, our best result was approximately $.79$ accuracy on the private tests, produced by a random forest classifier.
@@ -77,6 +60,8 @@ In this table, GBOW is "garbage bag of words," FV is "feature vector," 4G is "4-
 
 We also did some tuning of neural net parameters. These cross-validation scores were generated using sklearn's "cross val score" function; we took the average of 5-fold CV results. We were using the "tanh" activation unless otherwise specified. The numbers associated with the model is the dimension of each hidden layer. This data came from training on our length 10000 feature vectorization.
 
+We found that a 1-layer neural net with a size $400$ hidden layer performed equally as well or better than more complex methods with the tanh activation, and as it took less training time than the more complex models, we used this architecture to test different activation functions. We found that logistic and tanh activations had similar classification performance, but logistic took longer to train. ReLU didn't match up so well. We also tried a higher maximum number of training iterations on the highest performing architecture, but the results were unchanged.
+
 \begin{table}
 	\centering
 	\begin{tabular}{llr}
@@ -98,6 +83,8 @@ We also did some tuning of neural net parameters. These cross-validation scores 
 	\end{tabular}
 	\caption{Neural network 5-fold CV accuracy.}
 \end{table}
+
+We also tried a very simple boosting method for less common classes, where we just copied each example of the least representative classes. It improved our cross-validation accuracy to $.872$, but generalized poorly, indicating overfitting.
 
 \pagebreak
 
