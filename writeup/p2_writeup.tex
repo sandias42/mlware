@@ -62,16 +62,42 @@ We had a wide variety of performance across the methods and feature sets we test
 	\toprule
 	Model &  & Acc. \\
 	\midrule
-	\textsc{Baseline 1} & & 0.45\\
-	\textsc{Baseline 2} & & 2.59 \\
-	\textsc{Model 1} & & 10.59  \\
-	\textsc{SVM on topic modeled FV} & &13.42 \\
-	\textsc{Passive Aggressive on GBOW} & & .150\\
+	\textsc{RF, $n=100$, on TFIDF} & & 0.791\\
+	\textsc{Deep net on TFIDF} & & 0.785\\
+	\textsc{SVM on 4G BOW} & & 0.772 \\
+	\textsc{SVM on GBOW} & & 0.735  \\
+	\textsc{SVM on topic modeled FV} & & 0.342 \\
+	\textsc{Passive Aggressive on GBOW} & & 0.150\\
 	\bottomrule
 \end{tabular}
-\caption{Feature lists are a good way of illustrating problem specific tuning.}
+\caption{Model accuracy on private tests.}
 \end{table}
 
+In this table, GBOW is "garbage bag of words," FV is "feature vector," 4G is "4-gram," and TFIDF is [Ethan help!]
+
+We also did some tuning of neural net parameters. These cross-validation scores were generated using sklearn's "cross val score" function; we took the average of 5-fold CV results. We were using the "tanh" activation unless otherwise specified. The numbers associated with the model is the dimension of each hidden layer. This data came from training on our length 10000 feature vectorization.
+
+\begin{table}
+	\centering
+	\begin{tabular}{llr}
+		\toprule
+		Model &  & Acc. \\
+		\midrule
+		\textsc{400} & & 0.867 \\
+		\textsc{400, logistic} & & 0.867 \\
+		\textsc{400, 50, logistic} & & 0.867  \\
+		\textsc{400, 100} & & 0.866 \\
+		\textsc{800} & & 0.866 \\
+		\textsc{400, 50} & & 0.863  \\
+		\textsc{400, 200} & & 0.862 \\
+		\textsc{200} & & 0.862 \\
+		\textsc{200, 100} & & 0.860 \\
+		\textsc{100} & & 0.858 \\
+		\textsc{400, relu} & & 0.855 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Neural network 5-fold CV accuracy.}
+\end{table}
 
 \pagebreak
 
@@ -89,25 +115,6 @@ that details the performances of different methods tried.
 Credit will be given for quantitatively reporting (with clearly
 labeled and captioned figures and/or tables) on the performance of the
 methods you tried compared to your baselines.
-
-
-
-\begin{table}
-\centering
-\begin{tabular}{llr}
- \toprule
- Model &  & Acc. \\
- \midrule
- \textsc{Baseline 1} & & 0.45\\
- \textsc{Baseline 2} & & 2.59 \\
- \textsc{Model 1} & & 10.59  \\
- \textsc{Model 2} & &13.42 \\
- \textsc{Model 3} & & 7.49\\
- \bottomrule
-\end{tabular}
-\caption{\label{tab:results} Result tables can compactly illustrate absolute performance, but a plot may be more effective at illustrating a trend.}
-\end{table}
-
 
 
 
