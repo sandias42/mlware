@@ -107,6 +107,20 @@ methods you tried compared to your baselines.
 
 \section{Discussion} 
 
+Our first set of features had relatively good performance, but was clunky to work with, as it was a very high-dimensional sparse matrix. This drove the development of smaller feature sets ($m = 10^4$ rather than $10^6$), which made it much easier to iterate on models quickly. Indeed, we weren't even able to run some classifiers on a standard Mac laptop with the first feature set.
+
+For model evaluation, we began with a baseline of an SVM with straightforward bag-of-words features and stochastic gradient descent optimization.
+
+From there, we tried a Passive Aggressive classifier (Ethan, maybe you can elaborate a bit more?) which didn't do very well.
+
+Iterating on the basic SVM, we were able to improve with a new version using the Huber loss function. We got a significant (about $2.5$ percent) accuracy improvement from this switch. The Huber loss function is likely an improvement because..... not sure.
+
+Even training on a 4-gram feature set, though, the SVM seemed to be hitting a limit, so from there we tried an LSTM neural net and a random forest classifier, which both led to slight improvements.
+
+The fact that we were held around $80$ percent accuracy regardless of some reasonable varied model choices most likely means that if we wanted to make substantial gains, we'd need to do more feature work, like with more domain-specific knowledge or at least educated guessing. 
+
+\pagebreak
+
 
 End your report by discussing the thought process behind your
 analysis. This section does not need to be as technical as the others 
