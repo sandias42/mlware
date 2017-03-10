@@ -39,7 +39,7 @@ We explored the problem of malware classification from several different angles:
 \section{Results}
 We had a wide variety of performance across the methods and feature sets we tested. For the models that we submitted to Kaggle, our best result was approximately $.79$ accuracy on the private tests, produced by a random forest classifier.
  \\
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{llr}
 	\toprule
@@ -62,7 +62,7 @@ We also did some tuning of neural net parameters. These cross-validation scores 
 
 We found that a 1-layer neural net with a size $400$ hidden layer performed equally as well or better than more complex methods with the tanh activation, and as it took less training time than the more complex models, we used this architecture to test different activation functions. We found that logistic and tanh activations had similar classification performance, but logistic took longer to train. ReLU didn't match up so well. We also tried a higher maximum number of training iterations on the highest performing architecture, but the results were unchanged.
 
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{llr}
 		\toprule
@@ -86,24 +86,6 @@ We found that a 1-layer neural net with a size $400$ hidden layer performed equa
 
 We also tried a very simple boosting method for less common classes, where we just copied each example of the least representative classes. It improved our cross-validation accuracy to $.872$, but generalized poorly, indicating overfitting.
 
-\pagebreak
-
-This section should report on the following questions: 
-
-\begin{itemize}
-\item Did you create and submit a set of predictions? 
-  
-
-\item  Did your methods give reasonable performance?  
-\end{itemize}
-
-\noindent You must have \textit{at least one plot or table}
-that details the performances of different methods tried. 
-Credit will be given for quantitatively reporting (with clearly
-labeled and captioned figures and/or tables) on the performance of the
-methods you tried compared to your baselines.
-
-
 
 \section{Discussion} 
 
@@ -119,22 +101,6 @@ Even training on a 4-gram feature set, though, the SVM seemed to be hitting a li
 
 The fact that we were held around $80$ percent accuracy regardless of some reasonable varied model choices most likely means that if we wanted to make substantial gains, we'd need to do more feature work, like with more domain-specific knowledge or at least educated guessing. 
 
-\pagebreak
-
-
-End your report by discussing the thought process behind your
-analysis. This section does not need to be as technical as the others 
-but should summarize why you took the approach that your did. Credit will be given for:
-
-  \begin{itemize}
-  \item Explaining the your reasoning for why you seqentially chose to
-    try the approaches you did (i.e. what was it about your initial
-    approach that made you try the next change?).  
-  \item Explaining the results.  Did the adaptations you tried improve
-    the results?  Why or why not?  Did you do additional tests to
-    determine if your reasoning was correct?  
-  \end{itemize}
- 
 
 \end{document}
 
